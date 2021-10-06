@@ -1,48 +1,7 @@
-<button class="btn" type="button" [routerLink]="['/forms']">Example with forms</button>
+ 
 
 <div class="example">
-  <div class="static">
-    <h3>Static data</h3>
-    <div class="control-buttons">
-      <button class="btn" type="button" (click)="openStaticPanel($event)">Open</button>
-      <button class="btn" type="button" (click)="closeStaticPanel($event)">Close</button>
-      <button class="btn" type="button" (click)="focusStaticPanel($event)">Focus</button>
-      <button class="btn" type="button" (click)="clearStatic($event)">Clear</button>
-      <button class="btn" type="button" (click)="clearAndCloseStatic()">Clear & Close</button>
-    </div>
-
-    <div class="ng-autocomplete">
-      <ng-autocomplete #ngAutoCompleteStatic
-                       [data]="countries"
-                       [searchKeyword]="keyword"
-                       [initialValue]="initialValue"
-                       [focusFirst]="true"
-                       [placeholder]="placeholder"
-                       (selected)='selectEvent($event)'
-                       (inputChanged)='changeEventStatic($event)'
-                       (inputFocused)='focusEventStatic($event)'
-                       (inputCleared)='clearEventStatic()'
-                       (scrolledToEnd)='scrollToEndStatic()'
-                       (opened)="openedStatic()"
-                       (closed)="closedStatic()"
-                       historyIdentifier="countryList"
-                       [historyHeading]="historyHeading"
-                       historyListMaxNumber="15"
-                       notFoundText="Not found"
-                       minQueryLength="1"
-                       [itemTemplate]="itemTemplateStatic"
-                       [notFoundTemplate]="notFoundTemplate">
-      </ng-autocomplete>
-
-      <ng-template #itemTemplateStatic let-item>
-        <a [innerHTML]="item.name"></a>
-      </ng-template>
-
-      <ng-template #notFoundTemplate let-notFound>
-        <div [innerHTML]="notFound"></div>
-      </ng-template>
-    </div>
-  </div>
+ 
 
   <div class="api">
     <h3>API data (Filter on server)</h3>
@@ -52,7 +11,7 @@
       <button class="btn" type="button" (click)="focusApiPanel($event)">Focus</button>
     </div>
 
-    <div class="ng-autocomplete">
+    <!-- <div class="ng-autocomplete">
       <ng-autocomplete #ngAutoCompleteApi
                        [data]="items"
                        [searchKeyword]="keyword"
@@ -81,19 +40,19 @@
       <ng-template #notFoundTemplate let-notFound>
         <div [innerHTML]="notFound"></div>
       </ng-template>
-    </div>
-  </div>
+    </div> -->
+  <!-- </div> -->
 
-  <div class="api">
+  <!-- <div class="api">
     <h3>API data (Filter on local)</h3>
     <div class="control-buttons">
       <button class="btn" type="button" (click)="openUserPanel($event)">Open</button>
       <button class="btn" type="button" (click)="closeUserPanel($event)">Close</button>
       <button class="btn" type="button" (click)="focusUserPanel($event)">Focus</button>
-    </div>
+    </div> -->
 
-    <div class="ng-autocomplete">
-      <ng-autocomplete #userAuto
+    <!-- <div class="ng-autocomplete">
+      <!-- <ng-autocomplete #userAuto
                        [data]="users$ | async"
                        [searchKeyword]="keyword"
                        [initialValue]="userInitialValue"
@@ -105,8 +64,8 @@
                        notFoundText="User not found"
                        [itemTemplate]="itemTemplateApi"
                        [notFoundTemplate]="notFoundTemplate">
-      </ng-autocomplete>
-
+      </ng-autocomplete> -->
+      <app-autocomplete-module [list]="itemList"></app-autocomplete-module>
       <ng-template #itemTemplateApi let-item>
         <a [innerHTML]="item.name"></a>
       </ng-template>
@@ -114,58 +73,9 @@
       <ng-template #notFoundTemplate let-notFound>
         <div [innerHTML]="notFound"></div>
       </ng-template>
-    </div>
-  </div>
-</div>
-
-<br>
-<h2 style="text-align: center">Custom filters</h2>
-
-<!--Custom filters-->
-<div class="custom-filters">
-  <div class="static">
-    <h4>Static data with custom filter (e.g. case-sensitive)</h4>
-
-    <div class="ng-autocomplete">
-      <ng-autocomplete
-        [data]="countries"
-        [searchKeyword]="keyword"
-        [customFilter]="customFilter"
-        [placeholder]="placeholder"
-        [itemTemplate]="itemTemplateStatic"
-        [notFoundTemplate]="notFoundTemplate">
-      </ng-autocomplete>
-
-      <ng-template #itemTemplateStatic let-item>
-        <a [innerHTML]="item.name"></a>
-      </ng-template>
-
-      <ng-template #notFoundTemplate let-notFound>
-        <div [innerHTML]="notFound"></div>
-      </ng-template>
-    </div>
+    </div> 
   </div>
 
-  <div class="api">
-    <h4>API data (Disable local filter, you should change the data by re-fetching the data from server)</h4>
 
-    <div class="ng-autocomplete">
-      <ng-autocomplete
-        [data]="users$ | async"
-        [searchKeyword]="keyword"
-        [customFilter]="disableFilter"
-        [placeholder]="placeholder"
-        [itemTemplate]="itemTemplateApi"
-        [notFoundTemplate]="notFoundTemplate">
-      </ng-autocomplete>
 
-      <ng-template #itemTemplateApi let-item>
-        <a [innerHTML]="item.name"></a>
-      </ng-template>
 
-      <ng-template #notFoundTemplate let-notFound>
-        <div [innerHTML]="notFound"></div>
-      </ng-template>
-    </div>
-  </div>
-</div>

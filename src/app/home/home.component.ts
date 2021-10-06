@@ -10,7 +10,7 @@ import {tap} from 'rxjs/operators';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+  itemList = ['carrot', 'banana', 'apple', 'potato', 'tomato', 'cabbage', 'turnip', 'okra', 'onion', 'cherries', 'plum', 'mango'];
   @ViewChild('ngAutoCompleteStatic') ngAutocompleteStatic;
   @ViewChild('ngAutoCompleteApi') ngAutocompleteApi;
   @ViewChild('userAuto') userAuto;
@@ -116,7 +116,7 @@ export class HomeComponent implements OnInit {
     this.isLoading = true;
     this._dataService.getRepos(term).subscribe(res => {
       console.log('res', res);
-      //this.items = this.items ? this.items.concat(res['items']) : res['items'];
+      this.items = this.items ? this.items.concat(res['items']) : res['items'];
       this.items = res['items'];
       this.isLoading = false;
     }, (err) => {
@@ -139,18 +139,18 @@ export class HomeComponent implements OnInit {
 
   focusEventStatic(e) {
     console.log('focused', e);
-    //this.ngAutocompleteStatic.close();
+    this.ngAutocompleteStatic.close();
   }
 
   clearEventStatic() {
     console.log('cleared');
-    //this.ngAutocompleteStatic.close();
+    this.ngAutocompleteStatic.close();
   }
 
   scrollToEndStatic() {
     console.log('scrolled-to-bottom');
-    //this.countries = [...this.countries, ...this.test];
-    //console.log('countriesssss', this.countries);
+    this.countries = [...this.countries];
+    console.log('countriesssss', this.countries);
   }
 
   openedStatic() {

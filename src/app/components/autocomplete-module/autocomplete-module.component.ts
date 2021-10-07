@@ -41,7 +41,7 @@ export class AutocompleteModuleComponent implements OnInit {
         console.log(data)
     }, err => {console.log('Got error: ${err}')})
     //   {
-    //   method: 'GET',
+    //   method: 'GET',333
     //   url: ''
     // }).then(function successCallback(response) {
     //     // this callback will be called asynchronously

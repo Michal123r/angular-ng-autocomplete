@@ -1,15 +1,18 @@
  
 
-<div class="example">
+<div class="content">
  
 
-  <div class="api">
-    <h3>API data (Filter on server)</h3>
-    <div class="control-buttons">
-      <button class="btn" type="button" (click)="openApiPanel($event)">Open</button>
-      <button class="btn" type="button" (click)="closeApiPanel($event)">Close</button>
-      <button class="btn" type="button" (click)="focusApiPanel($event)">Focus</button>
+  <div class="select">
+    <h3>Countries</h3>
+    <div>
+      <app-autocomplete-module [list]="citiesList"></app-autocomplete-module>
+      <ng-template #itemTemplateApi let-item>
+        <a [innerHTML]="item.name"></a>
+      </ng-template>
     </div>
+    <h3>World Cities</h3>
+  
 
     <!-- <div class="ng-autocomplete">
       <ng-autocomplete #ngAutoCompleteApi
@@ -65,7 +68,7 @@
                        [itemTemplate]="itemTemplateApi"
                        [notFoundTemplate]="notFoundTemplate">
       </ng-autocomplete> -->
-      <app-autocomplete-module [list]="itemList"></app-autocomplete-module>
+      <app-autocomplete-module [list]="citiesList"></app-autocomplete-module>
       <ng-template #itemTemplateApi let-item>
         <a [innerHTML]="item.name"></a>
       </ng-template>

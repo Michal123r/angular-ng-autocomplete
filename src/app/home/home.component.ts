@@ -10,7 +10,7 @@ import {tap} from 'rxjs/operators';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  itemList = ['carrot', 'banana', 'apple', 'potato', 'tomato', 'cabbage', 'turnip', 'okra', 'onion', 'cherries', 'plum', 'mango'];
+  citiesList = ['carrot', 'banana', 'apple', 'potato', 'tomato', 'cabbage', 'turnip', 'okra', 'onion', 'cherries', 'plum', 'mango'];
   @ViewChild('ngAutoCompleteStatic') ngAutocompleteStatic;
   @ViewChild('ngAutoCompleteApi') ngAutocompleteApi;
   @ViewChild('userAuto') userAuto;
@@ -190,15 +190,7 @@ export class HomeComponent implements OnInit {
     this.ngAutocompleteStatic.clear();
   }
 
-  /**
-   * End of Static
-   */
-
-
-  /**
-   * API
-   */
-
+ 
   focusedEventApi(e) {
     console.log('focused');
     // Fetch API data on Load
@@ -222,23 +214,9 @@ export class HomeComponent implements OnInit {
     this.onChangeSearch('w');
   }
 
-  openApiPanel(e): void {
-    console.log('open');
-    e.stopPropagation();
-    this.ngAutocompleteApi.open();
-  }
+  
 
-  closeApiPanel(e): void {
-    console.log('close');
-    e.stopPropagation();
-    this.ngAutocompleteApi.close();
-  }
 
-  focusApiPanel(e): void {
-    console.log('focus');
-    e.stopPropagation();
-    this.ngAutocompleteApi.focus();
-  }
 
   /**
    * End of API

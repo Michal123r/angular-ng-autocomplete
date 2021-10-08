@@ -23,34 +23,12 @@ export class AutocompleteModuleComponent implements OnInit {
   // the list to be shown after filtering
   filteredList: string[] = [];
 
-  
 
   ngOnInit() {
-   // this.GetCities();
     this.filteredList = this.list;
   }
 
-//   interface Product {
-//     id: number,
-//    title: string
-// }
 
-  // GetCities() {  
-
-  //   this.http.get<any>('http://localhost:5000/cities').subscribe(data => {
-  //       console.log(data)
-  //   }, err => {console.log('Got error: ${err}')})
-  //   //   {
-  //   //   method: 'GET',333
-  //   //   url: ''
-  //   // }).then(function successCallback(response) {
-  //   //     // this callback will be called asynchronously
-  //   //     // when the response is available
-  //   //   }, function errorCallback(response) {
-  //   //     // called asynchronously if an error occurs
-  //   //     // or server returns response with an error status.
-  //   //   });
-  // }
 
   // modifies the filtered list as per input
   getFilteredList() {

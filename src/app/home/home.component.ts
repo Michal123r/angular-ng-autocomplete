@@ -10,102 +10,53 @@ import {tap} from 'rxjs/operators';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  citiesList = ['carrot', 'banana', 'apple', 'potato', 'tomato', 'cabbage', 'turnip', 'okra', 'onion', 'cherries', 'plum', 'mango'];
-  @ViewChild('ngAutoCompleteStatic') ngAutocompleteStatic;
-  @ViewChild('ngAutoCompleteApi') ngAutocompleteApi;
-  @ViewChild('userAuto') userAuto;
+  citiesList;//: string[] = [];
+  // @ViewChild('ngAutoCompleteStatic') ngAutocompleteStatic;
+  // @ViewChild('ngAutoCompleteApi') ngAutocompleteApi;
+  // @ViewChild('userAuto') userAuto;
 
-  private users$: Observable<any>;
-  userInitialValue = null;
+ // private users$: Observable<any>;
+  private sities$: Observable<string>;
+  //userInitialValue = null;
 
   items;
-  public placeholder: string = 'Enter the Country Name';
-  public keyword = 'name';
-  public historyHeading: string = 'Recently selected';
-  public isLoading: boolean;
-  initialValue = {
-    id: 9,
-    name: 'Georgia',
-    population: 200
-  };
+  // public placeholder: string = 'Enter the Country Name';
+  // public keyword = 'name';
+  // public historyHeading: string = 'Recently selected';
+   public isLoading: boolean;
+  // initialValue = {
+  //   id: 9,
+  //   name: 'Georgia',
+  //   population: 200
+  // };
 
-  /**
-   * Static Data
-   */
-
-  public countries: Country[] = [
-    {
-      id: 1,
-      name: 'Albania',
-      population: 100
-    },
-    {
-      id: 2,
-      name: 'Belgium',
-      population: 200
-    },
-    {
-      id: 3,
-      name: 'Denmark',
-      population: 200
-    },
-    {
-      id: 4,
-      name: 'Montenegro',
-      population: 200
-    },
-    {
-      id: 5,
-      name: 'Turkey',
-      population: 200
-    },
-    {
-      id: 6,
-      name: 'Ukraine',
-      population: 200
-    },
-    {
-      id: 7,
-      name: 'Macedonia',
-      population: 200
-    },
-    {
-      id: 8,
-      name: 'Slovenia',
-      population: 200
-    },
-    {
-      id: 9,
-      name: 'Georgia',
-      population: 200
-    },
-    {
-      id: 10,
-      name: 'India',
-      population: 200
-    },
-    {
-      id: 11,
-      name: 'Russia',
-      population: 200
-    },
-    {
-      id: 12,
-      name: 'Switzerland',
-      population: 200
-    }
-  ];
+ 
 
   constructor(private _dataService: DataService) {
   }
 
   ngOnInit() {
-    this.countries.push(new Country(1, 'Yeah', 100));
-    this.countries.push(new Country(2, 'Yep', 200));
-
-    this.users$ = this._dataService.getUsers().pipe(
-      tap(users => this.userInitialValue = users[0]),
-    );
+     this.loadData();
+    // this.users$ = this._dataService.getUsers().pipe(
+    //   tap(users => this.userInitialValue = users[0]),
+    // );
+    // this.sities$ = this._dataService.GetCities.pipe(
+    //   tap(users => this.userInitialValue = users[0]),
+    // );
+  }
+  loadData() {
+   
+    this.isLoading = true;
+    this._dataService.GetCities().subscribe(res => {
+      console.log('res', res);
+      this.citiesList = res;
+      //this.items = this.items ? this.items.concat(res['items']) : res['items'];
+     // this.items = res['items'];
+      this.isLoading = false;
+    }, (err) => {
+      console.log('err', err);
+      this.isLoading = false;
+    });
   }
 
   /**
@@ -137,21 +88,21 @@ export class HomeComponent implements OnInit {
     console.log('string', string);
   }
 
-  focusEventStatic(e) {
-    console.log('focused', e);
-    this.ngAutocompleteStatic.close();
-  }
+  // focusEventStatic(e) {
+  //   console.log('focused', e);
+  //   this.ngAutocompleteStatic.close();
+  // }
 
-  clearEventStatic() {
-    console.log('cleared');
-    this.ngAutocompleteStatic.close();
-  }
+  // clearEventStatic() {
+  //   console.log('cleared');
+  //   this.ngAutocompleteStatic.close();
+  // }
 
-  scrollToEndStatic() {
-    console.log('scrolled-to-bottom');
-    this.countries = [...this.countries];
-    console.log('countriesssss', this.countries);
-  }
+  // scrollToEndStatic() {
+  //   console.log('scrolled-to-bottom');
+  //   this.countries = [...this.countries];
+  //   console.log('countriesssss', this.countries);
+  // }
 
   openedStatic() {
     console.log('opened');
@@ -161,34 +112,34 @@ export class HomeComponent implements OnInit {
     console.log('closed');
   }
 
-  openStaticPanel(e): void {
-    console.log('open');
-    e.stopPropagation();
-    this.ngAutocompleteStatic.open();
-  }
+  // openStaticPanel(e): void {
+  //   console.log('open');
+  //   e.stopPropagation();
+  //   this.ngAutocompleteStatic.open();
+  // }
 
-  closeStaticPanel(e): void {
-    console.log('close');
-    e.stopPropagation();
-    this.ngAutocompleteStatic.close();
-  }
+  // closeStaticPanel(e): void {
+  //   console.log('close');
+  //   e.stopPropagation();
+  //   this.ngAutocompleteStatic.close();
+  // }
 
-  focusStaticPanel(e): void {
-    console.log('focus');
-    e.stopPropagation();
-    this.ngAutocompleteStatic.focus();
-  }
+  // focusStaticPanel(e): void {
+  //   console.log('focus');
+  //   e.stopPropagation();
+  //   this.ngAutocompleteStatic.focus();
+  // }
 
-  clearStatic(e): void {
-    console.log('clear');
-    e.stopPropagation();
-    this.ngAutocompleteStatic.clear();
-  }
+  // clearStatic(e): void {
+  //   console.log('clear');
+  //   e.stopPropagation();
+  //   this.ngAutocompleteStatic.clear();
+  // }
 
-  clearAndCloseStatic() {
-    this.ngAutocompleteStatic.close();
-    this.ngAutocompleteStatic.clear();
-  }
+  // clearAndCloseStatic() {
+  //   this.ngAutocompleteStatic.close();
+  //   this.ngAutocompleteStatic.clear();
+  // }
 
  
   focusedEventApi(e) {
@@ -243,23 +194,23 @@ export class HomeComponent implements OnInit {
     console.log('scrolled-to-bottom');
   }
 
-  openUserPanel(e): void {
-    console.log('open');
-    e.stopPropagation();
-    this.userAuto.open();
-  }
+  // openUserPanel(e): void {
+  //   console.log('open');
+  //   e.stopPropagation();
+  //   this.userAuto.open();
+  // }
 
-  closeUserPanel(e): void {
-    console.log('close');
-    e.stopPropagation();
-    this.userAuto.close();
-  }
+  // closeUserPanel(e): void {
+  //   console.log('close');
+  //   e.stopPropagation();
+  //   this.userAuto.close();
+  // }
 
-  focusUserPanel(e): void {
-    console.log('focus');
-    e.stopPropagation();
-    this.userAuto.focus();
-  }
+  // focusUserPanel(e): void {
+  //   console.log('focus');
+  //   e.stopPropagation();
+  //   this.userAuto.focus();
+  // }
 
   /*Custom filters*/
 

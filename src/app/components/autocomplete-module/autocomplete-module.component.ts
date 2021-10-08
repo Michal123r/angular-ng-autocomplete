@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+//import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-autocomplete-module',
   templateUrl: './autocomplete-module.component.html',
@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 
 export class AutocompleteModuleComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
   
   @Input() list: string[];
@@ -26,7 +26,7 @@ export class AutocompleteModuleComponent implements OnInit {
   
 
   ngOnInit() {
-    this.GetCities();
+   // this.GetCities();
     this.filteredList = this.list;
   }
 
@@ -35,22 +35,22 @@ export class AutocompleteModuleComponent implements OnInit {
 //    title: string
 // }
 
-  GetCities() {  
+  // GetCities() {  
 
-    this.http.get<any>('http://localhost:5000/cities').subscribe(data => {
-        console.log(data)
-    }, err => {console.log('Got error: ${err}')})
-    //   {
-    //   method: 'GET',333
-    //   url: ''
-    // }).then(function successCallback(response) {
-    //     // this callback will be called asynchronously
-    //     // when the response is available
-    //   }, function errorCallback(response) {
-    //     // called asynchronously if an error occurs
-    //     // or server returns response with an error status.
-    //   });
-  }
+  //   this.http.get<any>('http://localhost:5000/cities').subscribe(data => {
+  //       console.log(data)
+  //   }, err => {console.log('Got error: ${err}')})
+  //   //   {
+  //   //   method: 'GET',333
+  //   //   url: ''
+  //   // }).then(function successCallback(response) {
+  //   //     // this callback will be called asynchronously
+  //   //     // when the response is available
+  //   //   }, function errorCallback(response) {
+  //   //     // called asynchronously if an error occurs
+  //   //     // or server returns response with an error status.
+  //   //   });
+  // }
 
   // modifies the filtered list as per input
   getFilteredList() {

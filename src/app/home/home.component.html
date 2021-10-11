@@ -5,17 +5,10 @@
 
   <div class="select">
   
- 
     <h3>World Cities</h3>
  
       <app-autocomplete-module [list]="citiesList"></app-autocomplete-module>
-      <ng-template #itemTemplateApi let-item>
-        <a [innerHTML]="item.name"></a>
-      </ng-template>
-
-      <ng-template #notFoundTemplate let-notFound>
-        <div [innerHTML]="notFound"></div>
-      </ng-template>
+   
     </div> 
   </div>
 

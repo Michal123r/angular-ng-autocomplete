@@ -15,19 +15,30 @@ export class HomeComponent implements OnInit {
   items;
 
    public isLoading: boolean;
+  sub: any;
   
   constructor(private _dataService: DataService) {
   }
 
   ngOnInit() {
-     this.loadData();
+    var data  = localStorage.getItem('dataSource').toString();
+   // if(data == null){
+      this.loadData();
+   // }
+    // else{
+    //   this.citiesList = data.split(',');
+      
+    // }
+    
+    
    }
 
   loadData() {
     this.isLoading = true;
-    this._dataService.GetCities().subscribe(res => {
+    this.sub =  this._dataService.GetCities().subscribe(res => {
       console.log('res', res);
       this.citiesList = res;
+      localStorage.setItem('dataSource', this.citiesList);
       this.isLoading = false;
     }, (err) => {
       console.log('err', err);
@@ -35,5 +46,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
 }
